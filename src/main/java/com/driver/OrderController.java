@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
 
+    @Autowired
+    OrderService ResponseEntity;
     @PostMapping("/add-order")
     public ResponseEntity<String> addOrder(@RequestBody Order order){
-
+        ResponseEntity.addOrder(order);
         return new ResponseEntity<>("New order added successfully", HttpStatus.CREATED);
     }
 
@@ -44,7 +46,7 @@ public class OrderController {
 
         Order order= null;
         //order should be returned with an orderId.
-
+        ResponseEntity.getOrderById(String.valueOf(Integer.parseInt(orderId)));
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
